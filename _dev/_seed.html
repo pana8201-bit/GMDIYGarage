@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><body><script>
+/* test-only: seed a sample vehicle, then open the app */
+const q = new URLSearchParams(location.search);
+const v = q.get("v") || "hd";
+const T = {
+  hd:  { make: "Chevrolet", model: "chev_hd", year: 2006, engine: "hd_lbz", trans: "allison6", drive: "4x4" },
+  k15: { make: "Chevrolet", model: "chev_lt", year: 1995, engine: "lt_57tbi", trans: "4l60e", drive: "4x4" },
+  esc: { make: "Cadillac", model: "cad_esc", year: 2021, engine: "esc_62t1", trans: "10l80", drive: "AWD/4WD" },
+  ev:  { make: "GMC", model: "gmc_sev", year: 2025, engine: "ev_sierra_m", trans: "edu", drive: "eAWD" }
+}[v];
+const d = new Date(); d.setDate(d.getDate() - 150);
+const iso = d.toISOString().slice(0, 10);
+localStorage.setItem("gmdiy.v1", JSON.stringify({
+  truck: T, name: "Test", vin: "", odo: 187400,
+  settings: { mi: 5000, mo: 6, warn: 500 },
+  log: [{ id: "a1", type: T.engine.startsWith("ev") ? "Tire Rotation" : "Oil & Filter Change", date: iso, miles: 182800, cost: 74.5, notes: "ACDelco PF2232, 10 qt 15W-40" },
+        { id: "a2", type: "Engine Air Filter", date: "2025-03-01", miles: 160000, cost: 42, notes: "" }],
+  expenses: [{ id: "e1", date: "2026-06-10", amount: 389, category: "Modification", desc: "2in leveling kit", vendor: "RockAuto", miles: 185000, notes: "" },
+             { id: "e2", date: "2026-08-02", amount: 1120, category: "Tires & Wheels", desc: "LT275/70R18 x4", vendor: "Discount Tire", miles: 186200, notes: "" }]
+}));
+location.href = "index.html" + (q.get("tab") ? "?tab=" + q.get("tab") : "");
+</script></body></html>

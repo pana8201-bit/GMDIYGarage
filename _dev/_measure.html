@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="margin:0">
+<iframe id="f" src="index.html" style="width:375px;height:2000px;border:0"></iframe>
+<pre id="result"></pre>
+<script>
+document.getElementById("f").onload = () => setTimeout(() => {
+  const w = document.getElementById("f").contentWindow, d = w.document;
+  const vw = d.documentElement.clientWidth;
+  const wide = [];
+  d.querySelectorAll("body *").forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.right > vw + 1 && r.width > 0) wide.push(`${el.tagName}.${el.className}#${el.id} right=${Math.round(r.right)} w=${Math.round(r.width)}`);
+  });
+  document.getElementById("result").textContent =
+    `outer innerWidth=${innerWidth}\nframe clientWidth=${vw} scrollWidth=${d.documentElement.scrollWidth}\noverflowing=${wide.length}\n` + wide.slice(0, 25).join("\n");
+}, 1500);
+</script></body></html>
