@@ -1,0 +1,15 @@
+{
+  "name": "DIY Garage - GM Truck & SUV Parts & Spec Reference",
+  "short_name": "Truck DIY",
+  "description": "Independent DIY parts/spec reference, maintenance and expense tracker for 1990-present Chevrolet, GMC and Cadillac trucks and SUVs. Not affiliated with General Motors.",
+  "id": "./?app=gmdiy",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121a26",
+  "theme_color": "#121a26",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
